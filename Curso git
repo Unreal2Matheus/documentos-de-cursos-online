@@ -1,0 +1,41 @@
+Matheus‌ ‌
+Repositorios‌ ‌git‌ ‌
+05‌ ‌de‌ ‌março‌ ‌de‌ ‌2020‌ ‌
+Comandos‌ ‌e‌ ‌caracteristicas‌ ‌do‌ ‌git‌ ‌
+Neste‌ ‌documento‌ ‌estaram‌ ‌dicas‌ ‌e‌ ‌descrições‌ ‌de‌ ‌como‌ ‌se‌ ‌usar‌ ‌um‌ ‌repositorio‌ ‌
+ ‌
+Local‌ ‌Git‌ ‌States‌ ‌ ‌
+Working‌ ‌directory‌ ‌:‌ ‌contains‌ ‌all‌ ‌the‌ ‌files‌ ‌and‌ ‌folders‌ ‌for‌ ‌my‌ ‌aplications‌ ‌that‌ ‌may‌ ‌or‌ ‌may‌ ‌
+not‌ ‌be‌ ‌managed‌ ‌by‌ ‌git‌ ‌
+Staging‌ ‌area:‌ ‌preparares‌ ‌for‌ ‌the‌ ‌next‌ ‌commit‌ ‌
+Repository(commit‌ ‌history):‌ ‌contains‌ ‌files‌ ‌saved‌ ‌by‌ ‌git‌ ‌
+Git‌ ‌status:‌ ‌fala‌ ‌as‌ ‌mudancas‌ ‌que‌ ‌ocorreram‌ ‌no‌ ‌seu‌ ‌working‌ ‌directory‌ ‌em‌ ‌relacao‌ ‌ao‌ ‌repositorio‌ ‌
+Lembrar‌ ‌de‌ ‌ter‌ ‌um‌ ‌README.md‌ ‌explicando‌ ‌oq‌ ‌tem‌ ‌dentro‌ ‌do‌ ‌repositorio‌ ‌
+se‌ ‌o‌ ‌git‌ ‌status‌ ‌tiver‌ ‌mudancas‌ ‌para‌ ‌adiciona-las‌ ‌para‌ ‌o‌ ‌staging‌ ‌area‌ ‌usar‌ ‌ ‌
+git‌ ‌add‌ ‌<arquivo‌ ‌a‌ ‌ser‌ ‌adicionado>‌ ‌(se‌ ‌quiser‌ ‌adicionar‌ ‌tudo‌ ‌usar‌ ‌-A)‌ ‌
+depois‌ ‌de‌ ‌adicionar‌ ‌devemos‌ ‌comitar‌ ‌as‌ ‌mudancas‌ ‌
+git‌ ‌commit‌ ‌-m‌ ‌“mensagem‌ ‌do‌ ‌seu‌ ‌commit”‌ ‌
+ ‌ git ls-files "fala quais arquivos estaram sendo usados pelo Git"
+Se eu quiser mudar coisas ja comitadas usar
+git reset HEAD <nome do arquivo pra sair da staging area>
+para voltarmos para a ultima versao no depositorio podemos usar
+git checkout -- <nome do arquivo para voltar a versao do repositorio>
+Para criarmos um novo comando para o git usamos
+git config --global aliast.<nome do comando> "<comando a ser reduzido"
+para adicionar todos os tipos de modificao possiveis usar o -A em add
+Para termos arquivos que n vao ser addicionados nunca no nosso add usar
+atom .gitignore
+Nesse arquivo devemos colocar o nome dos aruivos a serem ignorados ou simplesmente usar
+*.etc todos os arquivos que tem essa terminacao
+No arquivo gitignore usamos uma linha para cada arquivo
+ usar o diff para olhar a diferenca entre dois commits diferente
+ HEAD normalmente e o ultimo commit do branch atual
+ Para criar um novo branch e mudar automaticamente para ele temos o seguinte comando
+ git checkout -b <nome do branch>
+ O comando checkout troca de branch
+ O comando git merge <nome do branch> junta o branch ao master
+ O comando git branch -a mostra todos os branches, usar sem o -a normalmente
+ Para configurarmos o editor base do git usar git config --global core.editor "atom -multiInst -nosession"
+O comando git brach -d <branch name > deleta o branch localmente
+// delete branch remotely
+git push origin --delete remoteBranchName
