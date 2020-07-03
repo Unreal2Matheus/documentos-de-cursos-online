@@ -11,21 +11,20 @@ Staging‌ ‌area:‌ ‌preparares‌ ‌for‌ ‌the‌ ‌next‌ ‌commit
 Repository(commit‌ ‌history):‌ ‌contains‌ ‌files‌ ‌saved‌ ‌by‌ ‌git‌ ‌
 Git‌ ‌status:‌ ‌fala‌ ‌as‌ ‌mudancas‌ ‌que‌ ‌ocorreram‌ ‌no‌ ‌seu‌ ‌working‌ ‌directory‌ ‌em‌ ‌relacao‌ ‌ao‌ ‌repositorio‌ ‌
 Lembrar‌ ‌de‌ ‌ter‌ ‌um‌ ‌README.md‌ ‌explicando‌ ‌oq‌ ‌tem‌ ‌dentro‌ ‌do‌ ‌repositorio‌ ‌
-se‌ ‌o‌ ‌git‌ ‌status‌ ‌tiver‌ ‌mudancas‌ ‌para‌ ‌adiciona-las‌ ‌para‌ ‌o‌ ‌staging‌ ‌area‌ ‌usar‌ ‌ ‌
+Se‌ ‌o‌ ‌git‌ ‌status‌ ‌tiver‌ ‌mudancas‌ ‌para‌ ‌adiciona-las‌ ‌para‌ ‌o‌ ‌staging‌ ‌area‌ ‌usar‌ ‌ ‌
 git‌ ‌add‌ ‌<arquivo‌ ‌a‌ ‌ser‌ ‌adicionado>‌ ‌(se‌ ‌quiser‌ ‌adicionar‌ ‌tudo‌ ‌usar‌ ‌-A)‌ ‌
-depois‌ ‌de‌ ‌adicionar‌ ‌devemos‌ ‌comitar‌ ‌as‌ ‌mudancas‌ ‌
+Depois‌ ‌de‌ ‌adicionar‌ ‌devemos‌ ‌comitar‌ ‌as‌ ‌mudancas‌ ‌
 git‌ ‌commit‌ ‌-m‌ ‌“mensagem‌ ‌do‌ ‌seu‌ ‌commit”‌ ‌
-‌ git ls-files "fala quais arquivos estaram sendo usados pelo Git"
+‌git ls-files "fala quais arquivos estaram sendo usados pelo Git"
 Se eu quiser mudar coisas ja comitadas usar
 git reset HEAD <nome do arquivo pra sair da staging area>
-para voltarmos para a ultima versao no depositorio podemos usar
+Para voltarmos para a ultima versao no depositório podemos usar
 git checkout -- <nome do arquivo para voltar a versao do repositorio>
 Para criarmos um novo comando para o git usamos
 git config --global aliast.<nome do comando> "<comando a ser reduzido"
-para adicionar todos os tipos de modificao possiveis usar o -A em add
-Para termos arquivos que n vao ser addicionados nunca no nosso add usar
+Para termos arquivos que n vao ser adicionados nunca no nosso add usar
 atom .gitignore
-Nesse arquivo devemos colocar o nome dos aruivos a serem ignorados ou simplesmente usar
+Nesse arquivo devemos colocar o nome dos arquivos a serem ignorados ou simplesmente usar
 *.etc todos os arquivos que tem essa terminacao
 No arquivo gitignore usamos uma linha para cada arquivo
 usar o diff para olhar a diferenca entre dois commits diferente
@@ -43,5 +42,13 @@ Primeiro devemos fazer um diretorio ssh
 mkdir .ssh
 cd .ssh/
 ssh-keygen -t rsa -C "seu email do git"
-apertar enter para ir para o local default
-colocar ou nao a senha
+Apertar enter para ir para o local default, colocar ou nao a senha
+Abrir o diretorio do ssh e copiar tudo dentro da pasta publica e colocar no site do github    ]
+Checando se o ssh esta funcionando corretamente usamos o comando
+ssh -T git@github.com
+para clonar um repositorio do git dentro de uma pasta especifica
+git clone <url que o git fornece>
+Para fazermos o repositorio local ficar em dia com o do git basta usar
+git pull
+Para mandarmos a atualização do repositorio local para o git basta usar
+git push
