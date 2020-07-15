@@ -35,7 +35,7 @@ O comando checkout troca de branch
 O comando git merge <nome do branch> junta o branch ao master
 O comando git branch -a mostra todos os branches, usar sem o -a normalmente
 Para configurarmos o editor base do git usar git config --global core.editor "atom -multiInst -nosession"
-O comando git brach -d <branch name > deleta o branch localmente
+O comando git branch -d <branch name > deleta o branch localmente
 // delete branch remotely
 git push origin --delete remoteBranchName
 Primeiro devemos fazer um diretorio ssh
