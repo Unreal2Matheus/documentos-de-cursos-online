@@ -7,3 +7,4 @@ lembrar de abrir o vs code com o comando code dentro do developer command prompt
 lembrar que o compilador ignora espaços
 lembrar que dentro dos parenteses() de uma função são colocados os argumentos das funções
 Lembra que std:: estamos acessando o namespace std 
+Para declararmos uma variavel primeiro colocamos o tipo de data(int,float,char,etc)
