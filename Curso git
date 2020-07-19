@@ -52,3 +52,5 @@ Para fazermos o repositorio local ficar em dia com o do git basta usar
 git pull
 Para mandarmos a atualização do repositorio local para o git basta usar
 git push
+Para marcarmos um git tag no ultimo commit feito basta usar
+git tag <nome da tag> <branch name>

@@ -1,0 +1,9 @@
+Lembrar que um compilador é um conversor de texto em binario
+#include está adicionando as bibliotecas
+para compilar o nosso codigo em c++ basta digitar 
+cl <nome do arquivo>.cpp
+depois para rodar o nosso curso basta digitar o nome do arquivo
+lembrar de abrir o vs code com o comando code dentro do developer command prompt
+lembrar que o compilador ignora espaços
+lembrar que dentro dos parenteses() de uma função são colocados os argumentos das funções
+Lembra que std:: estamos acessando o namespace std 
