@@ -18,3 +18,5 @@ cout= character output , << insertion operator
 cin = character input , >> extraction operator
 para começar uma nova linha podemos usar /n ou  std:endl
 ++variaveis incrementa 1 no valor
+As vezes deletar o arquivo binario do unreal pode estar corrompido basta deletar e rodar o programa de novo
+Os actors em unreal são os objetos que podemos colocar dentro da plataforma
