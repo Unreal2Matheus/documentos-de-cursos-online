@@ -8,3 +8,13 @@ lembrar que o compilador ignora espaços
 lembrar que dentro dos parenteses() de uma função são colocados os argumentos das funções
 Lembra que std:: estamos acessando o namespace std 
 Para declararmos uma variavel primeiro colocamos o tipo de data(int,float,char,etc)
+lembrar que para atribuir um valor a uma variavel precisamos primeiro declarar a variavel se nao ela nao ira compilar
+const ira deixar contante o valor da variavel ou seja ela não pode ser mudada uma vez declarada
+/**/ para comentarios em mais de uma linha
+Em C++ uma variavel nao pode começar com um numero
+Começar as variaveis com letra maiscula e evitar usar _ 
+VariavelQueFazAlgo 
+cout= character output , << insertion operator
+cin = character input , >> extraction operator
+para começar uma nova linha podemos usar /n ou  std:endl
+++variaveis incrementa 1 no valor
