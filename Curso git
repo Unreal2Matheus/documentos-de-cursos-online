@@ -38,11 +38,11 @@ Para configurarmos o editor base do git usar git config --global core.editor "at
 O comando git branch -d <branch name > deleta o branch localmente
 // delete branch remotely
 git push origin --delete remoteBranchName
-Primeiro devemos fazer um diretorio ssh
-
+Para inicializarmos o SSH basta usar o comando 
 ssh-keygen -t rsa -C "seu email do git"
+dentro do bash
 Apertar enter para ir para o local default, colocar ou nao a senha
-Abrir o diretorio do ssh e copiar tudo dentro da pasta publica e colocar no site do github    ]
+Abrir o diretorio do ssh e copiar tudo dentro do arquivo rsa.pub e colocar no site do github    ]
 Checando se o ssh esta funcionando corretamente usamos o comando
 ssh -T git@github.com
 para clonar um repositorio do git dentro de uma pasta especifica
