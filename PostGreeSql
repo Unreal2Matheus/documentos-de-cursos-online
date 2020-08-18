@@ -1,0 +1,219 @@
+SELECT name of the columns FROM table name
+se usar um * vc terá a tabela inteira ja que estará selecionando todas as colunas
+SELECT DISTINCT colum  FROM tabela {com ou sem () depois de distinct}
+ira selecionar as respostas que foram ditas uma vez , ou seja so retornara linhas com valores únicos dentro de uma coluna
+SELECT COUNT(nome) FROM tabela 
+Ira contar o numero de linhas na tabela
+Lembrar que * ou o nome da coluna dará o mesmo resultado mas colocar o nome da uma ideia melhor de porque vc estaria procurando
+WHERE é o condicional do SQL, deve aparecer depois do FROM 
+usar ' ' para colocar que vc quer achar 
+os condicionais são (< > <= >= = !=) ou AND OR NOT
+ORDER BY nome da coluna ASC/DESC 
+voce pode organizar baseado em mais de uma coluna a ordem das colunas que vc colocar em frente do ORDER BY sera a ordem de prioridade da organização
+LIMIT numero
+vai te dar somente o numero de linhas escrito depois de LIMIT
+BETWEEN xxxx AND xxxxx
+Lembrar de testar o BETWEEN
+IN ('xxxx','xxxx',..., 'xxxx')
+LIKE A% != LIKE a%
+ILIKE A% = LIKE a%
+'abc' LIKE 'abc'    true
+'abc' LIKE 'a%'     true
+'abc' LIKE '_b_'    true
+'abc' LIKE 'c'      false
+https://www.postgresql.org/docs/12/functions-matching.html#FUNCTIONS-POSIX-TABLE
+https://www.postgresql.org/docs/12/functions-aggregate.html
+SELECT rating, ROUND(AVG(replacement_cost),3) FROM film
+GROUP BY rating
+exemplo de AVG com arredondamento de ate 3 casas decimais 
+SELECT customer_id, SUM(amount) FROM payment
+GROUP BY customer_id ORDER BY SUM(amount) DESC
+LIMIT 5
+exemplo com soma na ordem decrescente baseado na própria soma
+HAVING é um WHERE que funciona depois de ter agregado um grupo com GROUP BY 
+SELECT customer_id, COUNT(payment_id) FROM payment
+GROUP BY customer_id HAVING COUNT(payment_id) >= 40
+SELECT customer_id, SUM(amount)
+FROM payment
+WHERE staff_id = 2
+GROUP BY customer_id 
+HAVING SUM(amount) > 100
+AS vai renomear uma coluna ou resultado de um query so vai ser usado para o data output
+INNER JOIN da a interceção de duas tabelas 
+SELECT payment_id, payment.customer_id, first_name
+FROM payment
+INNER JOIN customer
+ON payment.customer_id = customer.customer_id
+quando duas colunas tiverem o mesmo nome em tabelas diferentes devemos especifica-las com tabela.coluna
+OUTER JOIN pe igual a união de dois conjuntos
+EXEMPLO de RIGHT OUTER JOIN
+SELECT film.film_id, title,inventory_id,store_id
+FROM inventory
+RIGHT JOIN film ON
+film.film_id = inventory.film_id
+WHERE inventory.film_id IS NULL
+o LEFT é igual so que com sentido contrario
+SELECT address.district, customer.email, address.address_id FROM customer
+LEFT JOIN address ON
+address.address_id = customer.address_id
+WHERE address.district LIKE 'California'
+
+LEFT OUTER JOIN é A - B
+RIGHT OUTER JOIN é B - A
+
+exemplo de inner join duplo
+SELECT film_actor.actor_id, film.title, actor.first_name,actor.last_name FROM film_actor
+INNER JOIN film ON film.film_id = film_actor.film_id 
+INNER JOIN actor ON actor.actor_id = film_actor.actor_id 
+WHERE actor.first_name LIKE 'Nick' AND actor.last_name LIKE 'Wah%'
+
+lembrar que a tabela que o from chama tem que ter alguma coluna em comum com as outras tabelas do inner join mas ela n precisam necessariamente ser comum entre staff_id
+
+tipos de tempo em postgresql
+TIME contem so o tempo
+DATE contem so a data
+timestamp contem data e tempo
+timestamptz contem tempo data e timezone
+SELECT NOW () vai te dar o timestamp imediato
+TIMEOFDAY () mesma coisa mas mais bem escrito
+SELECT CURRENT_DATE da a data do dia
+https://www.postgresql.orshoug/docs/9.1/functions-datetime.html
+A função EXTRACT serve para tirar um parâmetro especifico de uma coluna de timestamp
+SELECT EXTRACT( YEAR FROM payment_date) AS year
+FROM payment
+ A função AS é um ALIAS 
+ A função AGE da a idade relativa de um timestamp
+ SELECT AGE(payment_date)
+FROM payment
+podemos usar a função TO_CHAR
+para converter qualquer tipo de data em data tipo texto
+SELECT TO_CHAR(payment_date,'MONTH  YYYY')
+FROM payment
+https://www.postgresql.org/docs/10/functions-formatting.html
+LENGTH retorna o tamanho da string
+SELECT LENGTH(first_name) FROM customer
+Para concatenar duas colunas temos ||
+SELECT first_name || ' ' || last_name AS full_name 
+FROM customer
+LOWER passa para lower case e left pega os caracteres a partir do inicio da palavra e retorna o numero parametrizado
+SELECT LOWER(LEFT(first_name,,1)) || LOWER(last_name) || '@gmail.com' AS customer_email
+FROM customer
+ SUB query rodam primeiro que o query principal
+ SELECT first_name, last_name
+FROM customer AS c
+WHERE EXISTS
+(SELECT * FROM payment AS p
+WHERE p.customer_id = c.customer_id
+AND amount >11)
+IN é como se fosse vários OR juntos
+WHERE column_name IN (value1, value2, ...);
+EXEMPLO de SELF JOIN que e comparar duas tabelas iguais
+SELECT f1.title , f2.title, f1.length
+FROM film AS f1
+INNER JOIN film AS f2 ON 
+f1.film_id != f2.film_id 
+AND f1.length = f2.length
+Lembrar de usar o ponto com o nome do schema caso n esteja no schema public
+Lembrar que em frações se deve usar . nos números para chamados de float
+Podemos comparar tempo basta lembrar que ele é uma string
+SELECT memid, surname, firstname, joindate  FROM cd.members
+WHERE  joindate >= '2012-09-01'
+EXEMPLO usando extract para pegar soma de slots no mes de setembro 
+Primary Key é um int único e n nulo, é uma coluna ou um grupo de colunas usado para identificar uma linha unicamente em uma tabela
+A Foreign KEY é uma key de outra tabela 
+olhar os constraints de uma tabela para sabermos quais sao PK e quais sao FK
+NOT NULL constraint garante que nunca sera nulo
+UNIQUE garante a variável ser única
+Para criar uma tabela 
+CREATE TABLE table_name( 
+    column_name TYPE column_constraint,
+    column_name TYPE column_constraint,
+);
+CREATE TABLE conta(
+	user_id SERIAL PRIMARY KEY,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	email VARCHAR (50) UNIQUE NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+	last_login TIMESTAMP
+)
+SERIAL faz a contagem automaticamente e se alguma for removida ele n atualiza os outros valores
+INSERT INTO account(username, password, email, created_on)
+VALUES('Jose', 'password', 'jose@mail', CURRENT_TIMESTAMP)
+UPDATE serve para mudar valores de uma linha na tabela 
+UPDATE account 
+SET last_login = CURRENT_TIMESTAMP
+UPDATE account_job
+SET hire_date = account.created_on
+FROM account 
+WHERE account_job.user_id = account.user_id
+RETURNING é a mesma coisa que um SELECT pos UPDATE ou DELETE    
+O comando ALTER pode mudar qualquer características‌ de uma tabela
+vc usa SET para adicionar um constraint e DROP para remover 
+https://www.postgresql.org/docs/12/sql-altertable.html
+DROP remove uma coluna dentro de uma tabela
+ALTER TABLE account
+DROP COLUMN IF EXISTS coluna CASCADE(ira tirar todas as dependências)
+CHECK da condições para entrada de dados numa tabela
+CREATE TABLE example (
+    ex_id SERIAL PRIMARY KEY ,
+    age SMALLINT CHECK (age>21),
+    parent_age SMALLINT CHECK (parent_age>age)
+);
+adicionando um condicional UNIQUE depois de feita a tabela
+ALTER TABLE teachers ADD CONSTRAINT unicidade UNIQUE (email,phone) ;
+CASE é como se fosse um if else 
+CASE 
+WHEN condition THEN result
+WHEN condition THEN result
+ELSE other_result
+END 
+FROM table ;
+SELECT customer_id,
+CASE 
+    WHEN (customer_id <= 100) THEN 'Premium'
+    WHEN (customer_id BETWEEN 100 AND 200) Then 'plus' 
+    ELSE 'Normal'
+END AS customer_class 
+ from customer
+SELECT customer_id,
+CASE  customer_id
+    WHEN 2 THEN 'Winner'
+    WHEN 5 THEN 'Second Place'
+    ELSE 'Normal'
+END AS raffle_results 
+ from customer
+SELECT 
+SUM(CASE rental_rate
+        WHEN 0.99 THEN 1
+        ELSE 0
+    END) AS bargains ,
+SUM(CASE rental_rate
+        WHEN 2.99 THEN 1
+        ELSE 0
+    END) AS regular , 
+SUM(CASE rental_rate
+        WHEN 4.99 THEN 1
+        ELSE 0
+    END) AS premium 
+    FROM film 
+	SELECT COALESCE ira checar por NULL 
+	SELECT item, (price - COALESCE(discount,0))
+	AS final FROM table
+SELECT CAST ('5' AS INTEGER)
+SELECT '5'::INTEGER
+NULLIF vai retornar NULL caso o valor retornado seja 0
+bom para n dar erro em contas tipo divisão por zero 
+SELECT (
+	SUM(CASE WHEN department = 'A' THEN 1 ELSE 0 END )/
+	NULLIF(SUM(CASE WHEN department = 'B' THEN 1 ELSE 0 END), 0)
+) AS department_ratio
+FROM depts
+
+Podemos salvar uma tabela de excel como um .csv e depois inseri-la numa tabela ja existente no postgresql com import/export
+
+O python ta instalado em C:\Users\mathe\AppData\Roaming\Python\Python38\Scripts
+
+fetchone () ira retornar apenas uma coluna 
+fetchmany (10) ira retornar 10 colunas
+https://wiki.postgresql.org/wiki/Psycopg2_Tutorial

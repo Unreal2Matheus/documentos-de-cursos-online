@@ -1,0 +1,2 @@
+Para desambiguidade colocamos 0x para representar hexadecimal 
+ Lembrar que para pedir ponteiros temos &n que da o endereço    , e * vai para o endereço do ponteiro
