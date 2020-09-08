@@ -217,3 +217,17 @@ O python ta instalado em C:\Users\mathe\AppData\Roaming\Python\Python38\Scripts
 fetchone () ira retornar apenas uma coluna 
 fetchmany (10) ira retornar 10 colunas
 https://wiki.postgresql.org/wiki/Psycopg2_Tutorial
+ 
+ Para instalar no linus basta usar 
+ sudo apt install postgresql postgresql-contrib
+ Depois para mudar a senha 
+ su - postgres
+ psql
+ \password
+ \q para sair 
+
+ para instalar pg admin 4 usar o comando
+curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+
