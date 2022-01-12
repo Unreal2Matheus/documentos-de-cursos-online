@@ -1,0 +1,9 @@
+Notas Curso de APC da DMC3 Aspen
+Modelos não parametricos são uma serie de coeficientes no tempo com dependencia na resposta da variavel
+Já os modelos parametricos são respostas de uma função multi-parametro em função do tempo
+Modelos First principles são baseado em equações de derivadas parciais.
+tipicamente usado em Steady state, levam mais tempo pra serem desenvolvidos mas são mais fieis
+Modelo empirico boa resposta e facil desenvolvimento mas dependente de testes 
+MV = Variavel Manipulada 
+FF =  Feed Foward
+MC =  Variavel controlada
